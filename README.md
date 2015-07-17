@@ -1,8 +1,9 @@
-simple Tools for everyday problems
+simple programs for everyday problems =
 ============
 
-`go install github.com/dearing/tools/json2yaml`
-`go install github.com/dearing/tools/yaml2json`
+*NOTE: written in go so you can just*
+
+`go install github.com/dearing/tools/...`
 
 
 Contributing
