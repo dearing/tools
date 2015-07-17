@@ -2139,11 +2139,10 @@ var (
 
 func getRandomName(retry int) (codeword string) {
 	rand.Seed(time.Now().UnixNano())
-
 	codeword = fmt.Sprintf("%s %s", adj[rand.Intn(len(adj))], name[rand.Intn(len(name))])
 	return
 }
 
 func main() {
-	fmt.Println(getRandomName(0))
+	fmt.Println(getRandomName)
 }
