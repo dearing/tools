@@ -2,8 +2,10 @@ simple programs for everyday problems =
 ============
 
 *NOTE: written in go so you can just*
-
-`go install github.com/dearing/tools/...`
+```
+go get -u github.com/dearing/tools/...
+go install github.com/dearing/tools/...
+```
 
 
 Contributing
