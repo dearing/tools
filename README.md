@@ -1,4 +1,4 @@
-simple programs for everyday problems =
+simple programs for everyday problems
 ============
 
 *NOTE: written in go so you can just*
