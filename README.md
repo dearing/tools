@@ -1,9 +1,8 @@
-simple programs for everyday problems
+tools dawg, :metal:
 ============
 
 [![forthebadge](http://forthebadge.com/images/badges/fuck-it-ship-it.svg)](http://forthebadge.com)
 
-*NOTE: written in go so you can just*
 ```
 go get -u github.com/dearing/tools/...
 go install github.com/dearing/tools/...
