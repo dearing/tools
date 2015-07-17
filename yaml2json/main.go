@@ -8,8 +8,6 @@ import (
 	"github.com/ghodss/yaml"
 )
 
-var NAME, VERSION string
-
 func main() {
 
 	bytes, err := ioutil.ReadAll(os.Stdin)

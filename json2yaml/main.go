@@ -22,3 +22,17 @@ func main() {
 
 	print(string(json))
 }
+
+func convert() {
+
+	bytes, err := ioutil.ReadAll(os.Stdin)
+	if err != nil {
+		log.Panicln(err)
+	}
+
+	json, err := yaml.JSONToYAML(bytes)
+	if err != nil {
+		log.Panicln(err)
+	}
+	
+}
