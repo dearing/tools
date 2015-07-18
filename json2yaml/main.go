@@ -8,6 +8,7 @@ import (
 	"github.com/ghodss/yaml"
 )
 
+//go:generate goversion -major=1 -minor=0 -patch=0
 func main() {
 
 	bytes, err := ioutil.ReadAll(os.Stdin)
