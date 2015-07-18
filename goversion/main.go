@@ -1,10 +1,24 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"math/rand"
+	"os"
+	"text/template"
 	"time"
 )
+
+type Versioning struct {
+	Package string
+
+	Major     int64
+	Minor     int64
+	Patch     int64
+	Build     int64
+	Codeword  string
+	Timestamp time.Time
+}
 
 var (
 	adj = [...]string{
@@ -2143,7 +2157,49 @@ func getRandomName() (codeword string) {
 	return
 }
 
-//go:generate goversion -major=1 -minor=0 -patch=0
+const version = `package {{.Package}}
+
+import "fmt"
+
+const (
+	MAJOR     = {{.Major}}
+	MINOR     = {{.Minor}}
+	PATCH     = {{.Patch}}
+	BUILD     = "{{.Build}}"
+	CODEWORD  = "{{.Codeword}}"
+)
+
+func print_version() {
+	fmt.Printf("%d.%d.%d+%s : '%s'\n ", MAJOR, MINOR, PATCH, BUILD, CODEWORD)
+}
+
+`
+
+var major = flag.Int64("major", 0, "MAJOR version when you make incompatible API changes")
+var minor = flag.Int64("minor", 0, "MINOR version when you add functionality in a backwards-compatible manner")
+var patch = flag.Int64("patch", 0, "PATCH version when you make backwards-compatible bug fixes")
+var outfile = flag.String("outfile", "version.go", "the verioning code file to write to")
+var gopackage = flag.String("gopackage", "main", "package this version code belongs to")
+
+//go:generate goversion -major=1 -minor=1 -patch=0
 func main() {
-	fmt.Println(getRandomName())
+
+	flag.Parse()
+	v := Versioning{
+		Package:  *gopackage,
+		Major:    *major,
+		Minor:    *minor,
+		Patch:    *patch,
+		Build:    time.Now().UnixNano(),
+		Codeword: getRandomName(),
+	}
+
+	t := template.Must(template.New("version").Parse(version))
+
+	f, err := os.Create(*outfile)
+	if err != nil {
+		panic(err)
+	}
+
+	t.Execute(f, v)
 }
