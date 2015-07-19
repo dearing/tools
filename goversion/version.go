@@ -18,11 +18,11 @@ var v = Version{
 	Major:    1,
 	Minor:    12,
 	Patch:    21,
-	Build:    "0x55AB0952",
-	Codeword: "round adela",
+	Build:    "0x55AB0C53",
+	Codeword: "faithful mainfroi",
 }
 
 // Print the details of the version struct, neatly.
 func (v *Version) String() string {
-	return fmt.Sprintf("%s : %s\nVersion %d.%d.%d+%s\n\n", os.Args[0], v.Codeword, v.Major, v.Minor, v.Patch, v.Build)
+	return fmt.Sprintf("%s : %d.%d.%d+%s '%s'", os.Args[0], v.Major, v.Minor, v.Patch, v.Build, v.Codeword)
 }

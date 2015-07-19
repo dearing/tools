@@ -44,7 +44,7 @@ var v = Version{
 
 // Print the details of the version struct, neatly.
 func (v *Version) String() string {
-	return fmt.Sprintf("%s : %s\nVersion %d.%d.%d+%s\n\n", os.Args[0], v.Codeword, v.Major, v.Minor, v.Patch, v.Build)
+	return fmt.Sprintf("%s : %d.%d.%d+%s '%s'", os.Args[0], v.Major, v.Minor, v.Patch, v.Build, v.Codeword)
 }
 `
 
