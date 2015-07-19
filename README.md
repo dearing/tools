@@ -1,4 +1,4 @@
-tools dawg, :metal:
+tools dawg, :metal: [![Build Status](https://drone.io/github.com/dearing/tools/status.png)](https://drone.io/github.com/dearing/tools/latest)
 ============
 
 [![forthebadge](http://forthebadge.com/images/badges/fuck-it-ship-it.svg)](http://forthebadge.com)
