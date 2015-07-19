@@ -2,8 +2,10 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"os"
 	"text/template"
+	"time"
 )
 
 //Versioning represents a versioning according to Semantic Versioning 2.0.0 => http://semver.org/spec/v2.0.0.html
@@ -16,7 +18,7 @@ type Versioning struct {
 	Codeword  string // cute nick name cuz I love them
 }
 
-const version = `package main
+const version = `package {{.GoPackage}}
 
 import (
 	"fmt"
@@ -33,11 +35,11 @@ type Version struct {
 }
 
 var v = Version{
-	Major:    0,
-	Minor:    0,
-	Patch:    0,
-	Build:    "09872390847",
-	Codeword: "testing shit",
+	Major:    {{.Major}},
+	Minor:    {{.Minor}},
+	Patch:    {{.Patch}},
+	Build:    "{{.Build}}",
+	Codeword: "{{.Codeword}}",
 }
 
 // Print the details of the version struct, neatly.
@@ -53,13 +55,13 @@ var build = flag.String("build", "", "BUILD extra data to append to versioning")
 var outfile = flag.String("outfile", "version.go", "the verioning code file to write to")
 var gopackage = flag.String("gopackage", "main", "package this version code belongs to")
 
-//go:generate goversion -major=1 -minor=1 -patch=0
+//go:generate goversion -major=1 -minor=12 -patch=21
 func main() {
 
 	flag.Parse()
 
 	if *build == "" {
-		*build = "blah blah"
+		*build = fmt.Sprintf("0x%X", time.Now().Unix())
 	}
 
 	v := Versioning{
