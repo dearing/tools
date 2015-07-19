@@ -1,0 +1,6 @@
+notify:
+  webhook:
+    urls:
+      - "YOUR_WEBHOOK_URL"
+    on_success: true
+    on_failure: true
